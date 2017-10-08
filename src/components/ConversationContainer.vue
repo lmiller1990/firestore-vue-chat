@@ -46,8 +46,8 @@
 							messages: convo.data().messages
 						})
 					}
-					this.$forceUpdate()
-					console.log(source, 'data ', convo && convo.data())
+					// this.$forceUpdate()
+					// console.log(source, 'data ', convo && convo.data())
 				})
 		},
 
