@@ -5,7 +5,7 @@ const state = {
 
 const mutations = {
 	SET_USER (state, { user }) {
-		state.all[user.id] = user.data()
+		state.all = {...state.all, [user.id]: user.data() }
 	}
 }
 

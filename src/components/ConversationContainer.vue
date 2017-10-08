@@ -38,13 +38,13 @@
 
 		created () {
 			this.$store.state.db.collection('conversations').doc(this.id).onSnapshot(convo => {
-					let source = convo.metadata.hasPendingWrites ? 'Local' : 'Server'
+				let source = convo.metadata.hasPendingWrites ? 'Local' : 'Server'
 
-					if (convo && convo.data()) {
-						convo.data().messages.forEach(message => this.$store.commit('conversations/ADD_MESSAGE', { 
-								conversationId: this.id, message })
-						)
-					}
+				if (convo && convo.data()) {
+					convo.data().messages.forEach(message => this.$store.commit('conversations/ADD_MESSAGE', { 
+							conversationId: this.id, message })
+					)
+				}
 			})
 		},
 

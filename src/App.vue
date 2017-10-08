@@ -3,9 +3,6 @@
 		<InitializeData />
 		<ConversationContainer 
 			v-for="id in convoIds"
-      :1q
-      q
-      q
 			:conversation="conversations[id]"
 	 		:id="id"
 	 		:key="id"
@@ -16,8 +13,7 @@
 <script>
 import InitializeData from './components/InitializeData.vue'
 import ConversationContainer from './components/ConversationContainer.vue'
-import firebase from 'firebase'
-import 'firebase/firestore'
+
 import { mapState } from 'vuex'
 
 export default {
