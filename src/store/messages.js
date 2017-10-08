@@ -3,9 +3,6 @@ const state = {
 }
 
 const mutations = {
-	ADD_MESSAGE (state, { conversationId, messages }) {
-		state.all[conversationId].messages = messages
-	},
 }
 
 const actions = {

@@ -37,18 +37,15 @@
 		},
 
 		created () {
-			this.$store.state.db.collection('conversations').doc(this.id)
-				.onSnapshot(convo => {
+			this.$store.state.db.collection('conversations').doc(this.id).onSnapshot(convo => {
 					let source = convo.metadata.hasPendingWrites ? 'Local' : 'Server'
+
 					if (convo && convo.data()) {
-						this.$store.commit('conversations/ADD_MESSAGE', {
-							conversationId: this.id,
-							messages: convo.data().messages
-						})
+						convo.data().messages.forEach(message => this.$store.commit('conversations/ADD_MESSAGE', { 
+								conversationId: this.id, message })
+						)
 					}
-					// this.$forceUpdate()
-					// console.log(source, 'data ', convo && convo.data())
-				})
+			})
 		},
 
 		methods: {
