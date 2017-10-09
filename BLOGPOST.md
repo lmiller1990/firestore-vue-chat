@@ -175,7 +175,11 @@ We also stubbed a `get()` method which will get the data later on.
 
 The application will have two Vuex modules: `conversations.js` and `users.js`. Messages will be saved in an array in `conversations.js`. If the application was to get bigger and more complex, I'd make a module for `messages.js` as well, but it will not be necessary at this stage. 
 
-Go ahead and create `conversations.js` and `users.js` inside of `store`. Inside of `users.js`, add the following:
+Go ahead and create `conversations.js` and `users.js` inside of `store`. 
+
+## Users Seed Data
+
+Inside of `users.js`, add the following:
 
 ```js
 const state = {
@@ -216,9 +220,11 @@ export default {
 
 `db.collection('users')` is part of the Firestore API. It returns a reference to the collection in the Firestore database. If it does not exist, it is created (or will be when you insert a document into it). Read more here: [https://firebase.google.com/docs/firestore/data-model](https://firebase.google.com/docs/firestore/data-model).
 
-Firestore provides a `set()` method to add new data. You must provide a unique identifier. In this case, I'm using what would usually be known a username - `mr_a`, `mr_b` and so on. Even if a user was the change their `firstName` or `lastName`, the unique identified would remain the same. In the above snippet, I also set `currentUser` in the state. This will be used later to set a `sender` field when when sending messages.
+Firestore provides a `set()` method to add new data. You must provide a unique identifier. In this case, I'm using what would usually be known a username - `mr_a`, `mr_b` and so on. Even if a user was the change their `firstName` or `lastName`, the unique identified would remain the same. In the above snippet, I also set `currentUser` in the state. This will be used later to set a `sender` field when when sending messages. Easy. 
 
-That's it! Easy. Let's see a bit more of the Firestore API by creating some seed data in `conversations.js`.
+## Conversations Seed Data
+
+Let's see a bit more of the Firestore API by creating some seed data in `conversations.js`.
 
 ```js
 import Vue from 'vue'
@@ -262,9 +268,11 @@ A bit more going on here than the `users` store. `all` will hold all the convers
 
 There are actually two ways to add data to a collection in Firestore, `set()` and `add()`. When using `set()` you must specify an id for the document. You could make one using something like uuid (which we import at the top of the store). In `users`, we manually specified one.
 
-Alternatively, we can have Firestore generate a random id for us using `add()`, which is what is happening above. The messages are nested in the conversation document, however, are Firestore cannot generate an id for us, so we created one using the `uuid` module.
+Alternatively, we can have Firestore generate a random id for us using `add()`, which is what is happening above. The messages are nested in the conversation document, however, are Firestore cannot generate an id for us, so we created one using the `uuid` module. That's it for setting the seed data up.
 
-Lastly, head back to `index.js` and import the modules, and add them the Vuex.Store constructor. Previous code has been omitted for brevity. 
+## Inject the modules to the Vuex store
+
+Now we have some seed data ready to go, head back to `index.js` and import the `conversations` and `users` modules, and add them the Vuex.Store constructor. Previous code has been omitted for brevity. 
 
 ```js
 import Vue from 'vue'
@@ -315,7 +323,7 @@ export default {
 
 Now try clicking *Initialize app base state*. The data should be written to Firestore (you may need to refresh the Firestore page to see the new collections).
 
-## Getting Data From Firestore 
+## Fetching Data From Firestore 
 
 The next thing to do is display the Firestore data in the Vue app. Head to `conversations.js` and add a `get()` method. We will use the ES7 `async/await` syntax.
 
