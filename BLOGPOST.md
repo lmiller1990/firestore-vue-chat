@@ -6,8 +6,8 @@ date: 2017-10-16
 banner_image:
 tags: [vue.js,firebase,vuex]
 author_name: "Lachlan Miller"
-author_bio: ""
-author_twitter:  ""
+author_bio: "Lachlan is a full stack developer with a strong interest in the modern Javascript stack. He currently resides in Tokyo, Japan."
+author_twitter:  "https://twitter.com/Lachlan06036367"
 author_image:
 ---
 
@@ -411,6 +411,8 @@ export default {
 ```
 
 That's it for access the data. Time to create some components to display it.
+
+## Creating Components to Display Firestore Data
 
 Now create `ConversationContainer.vue` and `Message.vue` inside `src`, and enter the following. We will start with `Message.vue`.
 
